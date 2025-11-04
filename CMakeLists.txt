@@ -18,6 +18,11 @@ set(PACKAGES
 # Used in add_executable
 set(SOURCE_FILES
   src/main.cpp
+  src/server/socket.cpp
+  src/server/binder.cpp
+  src/server/addrinfo.cpp
+  src/server/acceptor.cpp
+  src/server/connector.cpp
 )
 
 #############
