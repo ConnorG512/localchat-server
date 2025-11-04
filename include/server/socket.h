@@ -16,7 +16,7 @@ public:
   [[nodiscard]] const int& GetFileDescriptor() const;
 
 private:
-  void initSocket(const addrinfo* const address_info) const;
+  void initSocket(const addrinfo* const address_info);
 
   int file_descriptor_ {-1};
 };
