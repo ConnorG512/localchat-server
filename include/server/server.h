@@ -1,24 +1,23 @@
 #pragma once
 
-#include "server/addrinfo.h"
-#include "server/socket.h"
-#include "server/binder.h"
-#include "server/listener.h"
-#include "server/acceptor.h"
-#include "server/connector.h"
+#include <memory>
+#include <netdb.h>
+#include <unistd.h>
 
-namespace Network
+struct SocketFd {
+  explicit SocketFd(const int fd) : fd{fd} {};
+  ~SocketFd() { close(fd);};
+  int fd{-1};
+};
+
+namespace Networking
 {
 class Server
 {
 public:
-  Server() = default;
-
-  Addrinfo addr_info{};
-  Socket socket {addr_info.GetAddrInfo()};
-  Binder binder {socket.GetFileDescriptor(), addr_info.GetAddrInfo()};
-  //Connector connector {socket.GetFileDescriptor(), addr_info.GetAddrInfo()};
-  Listener listener {socket.GetFileDescriptor()};
-  Acceptor acceptor {socket.GetFileDescriptor()};
+  Server(const char* const port_number);
+private:
+  SocketFd socket_{-1};
+  std::unique_ptr<addrinfo, decltype(&freeaddrinfo)> addr_ {nullptr, &freeaddrinfo}; 
 };
 } // namespace Network

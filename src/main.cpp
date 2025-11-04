@@ -2,11 +2,9 @@
 
 #include <unistd.h>
 
-Network::Server server_instance{};
-
 int main() {
 
-  Network::Server server_instance{};
+  Networking::Server server_instance{"40050"};
   while(true)
   {
     sleep(1);
