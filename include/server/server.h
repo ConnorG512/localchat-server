@@ -3,6 +3,7 @@
 #include "server/addrinfo.h"
 #include "server/socket.h"
 #include "server/binder.h"
+#include "server/listener.h"
 #include "server/acceptor.h"
 #include "server/connector.h"
 
@@ -16,7 +17,8 @@ public:
   Addrinfo addr_info{};
   Socket socket {addr_info.GetAddrInfo()};
   Binder binder {socket.GetFileDescriptor(), addr_info.GetAddrInfo()};
+  //Connector connector {socket.GetFileDescriptor(), addr_info.GetAddrInfo()};
+  Listener listener {socket.GetFileDescriptor()};
   Acceptor acceptor {socket.GetFileDescriptor()};
-  Connector connector {socket.GetFileDescriptor(), addr_info.GetAddrInfo()};
 };
 } // namespace Network
