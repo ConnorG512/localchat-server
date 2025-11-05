@@ -19,6 +19,7 @@ set(PACKAGES
 set(SOURCE_FILES
   src/main.cpp
   src/server/server.cpp
+  src/manager.cpp
 )
 
 #############
