@@ -21,6 +21,7 @@ set(SOURCE_FILES
   src/server/server.cpp
   src/manager.cpp
   src/command-parser.cpp
+  src/client-list.cpp
 )
 
 #############
