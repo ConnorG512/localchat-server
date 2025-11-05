@@ -6,12 +6,6 @@
 #include <netdb.h>
 #include <unistd.h>
 
-struct SocketFd {
-  explicit SocketFd(const int fd) : fd{fd} {};
-  ~SocketFd() { close(fd);};
-  int fd{-1};
-};
-
 namespace Networking
 {
 class Server
