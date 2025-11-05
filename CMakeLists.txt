@@ -22,6 +22,7 @@ set(SOURCE_FILES
   src/manager.cpp
   src/command-parser.cpp
   src/client-list.cpp
+  src/linux-fd.cpp
 )
 
 #############
