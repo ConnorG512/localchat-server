@@ -4,7 +4,7 @@
 
 int main() {
 
-  Networking::Server server_instance{"40050"};
+  Networking::Server server_instance{};
   while(true)
   {
     sleep(1);
