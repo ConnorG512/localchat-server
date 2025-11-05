@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 Networking::Server::Server(const char* const port_number)
 {
@@ -36,4 +37,12 @@ Networking::Server::Server(const char* const port_number)
   {
     throw std::runtime_error(std::format("Failed to Listen! {}.", strerror(errno)));
   }
+}
+
+int Networking::Server::acceptConnection() const
+{
+  struct sockaddr_storage client_addr{};
+  socklen_t addr_size {sizeof(client_addr)};
+
+  return accept(socket_.GetFd(), reinterpret_cast<sockaddr*>(&client_addr), &addr_size);
 }

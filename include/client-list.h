@@ -1,10 +1,13 @@
+#include "linux-fd.h"
+
 #include <vector>
-#include "template/linux-fd.h"
 
 class ClientList {
   public:
-    ClientList() = default;
+    ClientList();
+    
+    void append(LinuxFd client);
 
   private:
-    std::vector<LinuxFd<int>> connected_clients_ {};
+    std::vector<LinuxFd> connected_clients_;
 };

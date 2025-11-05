@@ -1,6 +1,6 @@
 #pragma once
 
-#include "template/linux-fd.h"
+#include "linux-fd.h"
 
 #include <memory>
 #include <netdb.h>
@@ -12,8 +12,11 @@ class Server
 {
 public:
   Server(const char* const port_number = "40050");
+
+  [[nodiscard]] int acceptConnection() const;
+
 private:
-  LinuxFd<int> socket_{};
+  LinuxFd socket_{};
   std::unique_ptr<addrinfo, decltype(&freeaddrinfo)> addr_ {nullptr, &freeaddrinfo}; 
 };
 } // namespace Network
