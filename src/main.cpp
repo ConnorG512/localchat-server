@@ -1,15 +1,14 @@
 #include "manager.h"
+#include "command-parser.h"
 
-#include <print>
+#include <cassert>
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
   
-  if(argc > 1) 
-  {
-    std::println("Multiple Arguments provided!");
-  }
   Manager server_manager{};
+
+  CommandParser::checkForValidArguments();
 
   while(!server_manager.readyToExit())
   {

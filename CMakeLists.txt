@@ -20,6 +20,7 @@ set(SOURCE_FILES
   src/main.cpp
   src/server/server.cpp
   src/manager.cpp
+  src/command-parser.cpp
 )
 
 #############
