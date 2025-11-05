@@ -1,14 +1,11 @@
 #include "manager.h"
-#include <iostream>
+#include "command-parser.h"
+
 
 int main(int argc, const char* argv[]) {
   Manager server_manager{};
 
-  std::span<const char*> args(argv, argv+argc);
-  for(auto string : args)
-  {
-    std::cout << string << "\n";
-  }
+  CommandParser::checkForValidArguments(std::span<const char*>(argv, argv+argc));
 
   while(!server_manager.readyToExit())
   {
