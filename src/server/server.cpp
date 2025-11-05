@@ -22,17 +22,17 @@ Networking::Server::Server(const char* const port_number)
     throw std::runtime_error(std::format("Failed to get address info! {}.", strerror(errno)));
   }
 
-  if (socket_.fd = socket(addr_->ai_family, addr_->ai_socktype, addr_->ai_protocol); socket_.fd == -1)
+  if (socket_.setFd(socket(addr_->ai_family, addr_->ai_socktype, addr_->ai_protocol)); socket_.GetFd() == -1)
   {
     throw std::runtime_error(std::format("Failed to get scoket! {}.", strerror(errno)));
   }
 
-  if( const int result = bind(socket_.fd, addr_->ai_addr, addr_->ai_addrlen); result == -1)
+  if( const int result = bind(socket_.GetFd(), addr_->ai_addr, addr_->ai_addrlen); result == -1)
   {
     throw std::runtime_error(std::format("Failed to get scoket! {}.", strerror(errno)));
   }
 
-  if(const int result = listen(socket_.fd, 5); result == -1)
+  if(const int result = listen(socket_.GetFd(), 5); result == -1)
   {
     throw std::runtime_error(std::format("Failed to Listen! {}.", strerror(errno)));
   }

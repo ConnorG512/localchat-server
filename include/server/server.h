@@ -1,5 +1,7 @@
 #pragma once
 
+#include "template/linux-fd.h"
+
 #include <memory>
 #include <netdb.h>
 #include <unistd.h>
@@ -17,7 +19,7 @@ class Server
 public:
   Server(const char* const port_number);
 private:
-  SocketFd socket_{-1};
+  LinuxFd<int> socket_{};
   std::unique_ptr<addrinfo, decltype(&freeaddrinfo)> addr_ {nullptr, &freeaddrinfo}; 
 };
 } // namespace Network
